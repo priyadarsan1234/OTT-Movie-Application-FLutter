@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:make_my_show/AllMovie.dart';
 import 'package:make_my_show/Search.dart';
-import 'package:make_my_show/Video.dart';
+import 'package:make_my_show/Details.dart';
 class HOME extends StatefulWidget {
 
   @override
@@ -9,7 +9,7 @@ class HOME extends StatefulWidget {
 }
 class _NavPageState extends State<HOME> {
   int _currentIndex = 0;
-  final List<Widget> _pages = [AllMovie(),Search(),Search(),AllMovie(),AllMovie()];
+  final List<Widget> _pages = [AllMovie(),Search(),Search(),AllMovie(),Details()];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
