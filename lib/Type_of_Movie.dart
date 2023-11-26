@@ -28,10 +28,9 @@ class _Movies extends State<MovieType> {
   }
 
   List<dynamic> getFilteredMovies() {
-    if (widget.Type=="ALL") {
+    if (widget.Type == "ALL") {
       return items.take(10).toList();
-    }
-    else{
+    } else {
       return items.where((movie) => movie['TYPE'] == widget.Type).toList();
     }
   }
@@ -45,7 +44,7 @@ class _Movies extends State<MovieType> {
   @override
   Widget build(BuildContext context) {
     List<dynamic> filteredMovies = getFilteredMovies();
-    
+
     return Material(
       child: Scaffold(
         appBar: AppBar(
@@ -56,44 +55,33 @@ class _Movies extends State<MovieType> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              Padding(
+              const Padding(
                 padding: EdgeInsets.symmetric(horizontal: 7.0, vertical: 5),
-                child: Text(
-                  "${widget.Type} Movies",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 21,
-                    color: Colors.white,
-                  ),
-                ),
+                
               ),
-              Container(
-                height: MediaQuery.of(context).size.height -
-                    AppBar().preferredSize.height,
-                margin: EdgeInsets.only(bottom: 10.0),
-                child: GridView.builder(
-                  scrollDirection: Axis.vertical,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                    crossAxisCount: 3,
-                    crossAxisSpacing: 5.0,
-                    mainAxisSpacing: 10.0,
-                  ),
-                  itemCount: filteredMovies.length,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Padding(
-                      padding: EdgeInsets.only(top: 10),
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.circular(8.0),
-                        child: Image.network(
-                          '${filteredMovies[index]['IMAGE']}',
-                          width: 120.0,
-                          height: 50.0,
-                          fit: BoxFit.cover,
-                        ),
-                      ),
-                    );
-                  },
+              GridView.builder(
+                physics: const NeverScrollableScrollPhysics(),
+                shrinkWrap: true,
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                  crossAxisCount: 3,
+                  crossAxisSpacing: 10.0,
+                  mainAxisSpacing: 10.0,
+                  childAspectRatio: 0.5, // Aspect ratio: height = 2 * width
                 ),
+                itemCount: filteredMovies.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return Padding(
+                    padding: const EdgeInsets.only(top: 5),
+                    child: ClipRRect(
+                      borderRadius: BorderRadius.circular(8.0),
+                      child: Image.network(
+                        '${filteredMovies[index]['IMAGE']}',
+                        fit: BoxFit.cover,
+                      ),
+                    ),
+                    
+                  );
+                },
               ),
             ],
           ),

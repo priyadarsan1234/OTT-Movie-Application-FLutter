@@ -53,7 +53,7 @@ class _VideoState extends State<Video> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("My Shows"),
+        title: Text(widget.name),
         backgroundColor: Colors.blue,
         elevation: 0,
       ),
@@ -98,10 +98,10 @@ class _VideoState extends State<Video> {
               
                mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Icon(Icons.comment,color:Color.fromARGB(255, 94, 183, 250)),
-                Icon(Icons.share,color:Color.fromARGB(255, 94, 183, 250)),
+                Icon(Icons.comment,color:Color.fromARGB(255, 117, 50, 50)),
+                Icon(Icons.share,color:Color.fromARGB(255, 232, 94, 250)),
                 Icon(Icons.download,color:Color.fromARGB(255, 94, 183, 250)),
-                Icon(Icons.linked_camera,color:Color.fromARGB(255, 94, 183, 250))
+                Icon(Icons.save_as,color:Color.fromARGB(255, 36, 227, 179))
               ],
             )
           ),
@@ -133,7 +133,7 @@ class _VideoState extends State<Video> {
                         child: ClipRRect(
                           borderRadius: BorderRadius.circular(22.0),
                           child: Container(
-                            width: MediaQuery.of(context).size.width * 0.47,
+                            width: MediaQuery.of(context).size.width * 0.42,
                             height: MediaQuery.of(context).size.height * 0.14,
                             child: AspectRatio(
                               aspectRatio: _controller2.value.aspectRatio,
@@ -149,6 +149,9 @@ class _VideoState extends State<Video> {
                         ),
                       )
                     : Center(child: CircularProgressIndicator()),
+
+                    
+                    
                 if (!_isPlaying)
                   ElevatedButton(
                     onPressed: _restartVideo,
