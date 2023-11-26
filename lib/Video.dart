@@ -41,14 +41,6 @@ class _VideoState extends State<Video> {
     });
   }
 
-  void _restartVideo() {
-    _controller.seekTo(Duration.zero);
-    _controller.play();
-    setState(() {
-      _isPlaying = true;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -76,36 +68,32 @@ class _VideoState extends State<Video> {
                   ),
                 )
               : Center(child: CircularProgressIndicator()),
-            Container(
-              padding: EdgeInsets.only(top: 3,left: 6),
-              child: Row(
-                children: [
-                  Text(
-                      widget.name,
-                      style: TextStyle(
-                        fontSize: 20,
-                        color: Colors.white,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                ],
-              ),
-            ),
-
           Container(
-            padding: EdgeInsets.only(top: 10,bottom: 5,left: 10,right: 10),
-            child:Row(
-              
-               mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            padding: EdgeInsets.only(top: 3, left: 6),
+            child: Row(
               children: [
-                Icon(Icons.comment,color:Color.fromARGB(255, 117, 50, 50)),
-                Icon(Icons.share,color:Color.fromARGB(255, 232, 94, 250)),
-                Icon(Icons.download,color:Color.fromARGB(255, 94, 183, 250)),
-                Icon(Icons.save_as,color:Color.fromARGB(255, 36, 227, 179))
+                Text(
+                  widget.name,
+                  style: TextStyle(
+                    fontSize: 20,
+                    color: Colors.white,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ],
-            )
+            ),
           ),
-
+          Container(
+              padding: EdgeInsets.only(top: 10, bottom: 5, left: 10, right: 10),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Icon(Icons.comment, color: Color.fromARGB(255, 117, 50, 50)),
+                  Icon(Icons.share, color: Color.fromARGB(255, 232, 94, 250)),
+                  Icon(Icons.download, color: Color.fromARGB(255, 94, 183, 250)),
+                  Icon(Icons.save_as, color: Color.fromARGB(255, 36, 227, 179))
+                ],
+              )),
           Container(
             padding: EdgeInsets.all(6),
             child: Column(
@@ -149,15 +137,6 @@ class _VideoState extends State<Video> {
                         ),
                       )
                     : Center(child: CircularProgressIndicator()),
-
-                    
-                    
-                if (!_isPlaying)
-                  ElevatedButton(
-                    onPressed: _restartVideo,
-                    
-                    child: Icon(Icons.restart_alt,color: Colors.white),
-                  ),
               ],
             ),
           ),
@@ -189,22 +168,21 @@ class _PlayPauseOverlay extends StatelessWidget {
 
     return Stack(
       children: [
-        AnimatedSwitcher(
-          duration: Duration(milliseconds: 50),
-          reverseDuration: Duration(milliseconds: 200),
-          child: controller.value.isPlaying
-              ? SizedBox.shrink()
-              : Container(
-                  color: Colors.black26,
-                  child: Center(
-                    child: Icon(
-                      Icons.play_arrow,
-                      color: Colors.white,
-                      size: 100.0,
-                    ),
-                  ),
+        if (!controller.value.isPlaying) // Show play button only if not playing
+          AnimatedSwitcher(
+            duration: Duration(milliseconds: 50),
+            reverseDuration: Duration(milliseconds: 200),
+            child: Container(
+              color: Colors.black26,
+              child: Center(
+                child: Icon(
+                  Icons.play_arrow,
+                  color: Colors.white,
+                  size: 100.0,
                 ),
-        ),
+              ),
+            ),
+          ),
         GestureDetector(
           onTap: () {
             if (controller.value.isPlaying) {
@@ -243,6 +221,7 @@ class _PlayPauseOverlay extends StatelessWidget {
     return '$twoDigitMinutes:$twoDigitSeconds';
   }
 }
+
 
 class _SkipButtons extends StatelessWidget {
   final VideoPlayerController controller;

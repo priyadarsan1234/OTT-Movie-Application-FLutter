@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:make_my_show/Video.dart';
 
 class MovieType extends StatefulWidget {
   const MovieType({Key? key, required this.Type}) : super(key: key);
@@ -70,16 +71,29 @@ class _Movies extends State<MovieType> {
                 ),
                 itemCount: filteredMovies.length,
                 itemBuilder: (BuildContext context, int index) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 5),
-                    child: ClipRRect(
-                      borderRadius: BorderRadius.circular(8.0),
-                      child: Image.network(
-                        '${filteredMovies[index]['IMAGE']}',
-                        fit: BoxFit.cover,
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Video(
+                            name:"${filteredMovies[index]['NAME']}",
+                            title:"${filteredMovies[index]['TITLE']}",
+                            trailer: "${filteredMovies[index]['TRAILER']}",
+                          ),
+                        ),
+                      );
+                    },
+                    child: Padding(
+                      padding: EdgeInsets.only(top: 5),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(8.0),
+                        child: Image.network(
+                          '${filteredMovies[index]['IMAGE']}',
+                          fit: BoxFit.cover,
+                        ),
                       ),
                     ),
-                    
                   );
                 },
               ),

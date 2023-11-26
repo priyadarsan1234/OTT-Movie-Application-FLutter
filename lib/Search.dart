@@ -67,10 +67,7 @@ class _Movies extends State<Search> {
         children: [
           const Padding(
             padding: EdgeInsets.all(8.0),
-            child: Text(
-              'Movie List',
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-            ),
+            
           ),
           Expanded( 
             child: ListView.builder(

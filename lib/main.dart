@@ -20,17 +20,17 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('My Home Page'),
+        title: const Text('My Home Page'),
       ),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Text(
+            const Text(
               'Hello, Flutter!',
               style: TextStyle(fontSize: 24),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 Navigator.push(
@@ -38,9 +38,9 @@ class MyHomePage extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => HOME()),
                 );
               },
-              child: Text('Press Me'),
+              child: const Text('Press Me'),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             // ElevatedButton(
             //   onPressed: () {
             //     // Navigator.push(
