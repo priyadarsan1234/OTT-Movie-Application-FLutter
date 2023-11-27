@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:make_my_show/Home.dart';
+import 'package:make_my_show/Login.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,7 +11,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'My Flutter App',
-      home: MyHomePage(),
+      home: Login(),
     );
   }
 }
@@ -23,8 +24,10 @@ class MyHomePage extends StatelessWidget {
         title: const Text('My Home Page'),
       ),
       body: Center(
+        
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
+          crossAxisAlignment: CrossAxisAlignment.center,
+          
           children: <Widget>[
             const Text(
               'Hello, Flutter!',
@@ -35,7 +38,7 @@ class MyHomePage extends StatelessWidget {
               onPressed: () {
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => HOME()),
+                  MaterialPageRoute(builder: (context) => Login()),
                 );
               },
               child: const Text('Press Me'),

@@ -40,6 +40,7 @@ class Details extends StatelessWidget {
               height: 16,
             ),
             Row(
+              
               children: [
                 Expanded(
                   child: Card(
@@ -49,7 +50,7 @@ class Details extends StatelessWidget {
                         "My Account",
                         style: TextStyle(fontSize: 16),
                       ),
-                      subtitle: Text("Manage Your Account Information"),
+                      subtitle: Text("Manage Your Account "),
                       leading: Icon(Icons.manage_accounts_rounded),
                       trailing: Icon(Icons.arrow_circle_right_sharp),
                     ),
@@ -112,7 +113,7 @@ class Details extends StatelessWidget {
                         "Video Setting",
                         style: TextStyle(fontSize: 16),
                       ),
-                      subtitle: Text("Change Your Video Setting & Control"),
+                      subtitle: Text("Change Your Video Setting "),
                       leading: Icon(Icons.video_call),
                       trailing: Icon(Icons.arrow_circle_right_sharp),
                     ),
